@@ -41,6 +41,7 @@ def startStreaming(spark: SparkSession):
     .option('kafka.bootstrap.servers', 'rtcms-kafka:9092') \
     .option('subscribe', 'crypto_ticker') \
     .option('startingOffsets', 'earliest') \
+    .option("failOnDataLoss", False) \
     .load()
     df = transformData(df)
     query = df.writeStream \
