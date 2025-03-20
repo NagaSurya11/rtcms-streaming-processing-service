@@ -4,4 +4,3 @@ Dockerfile
 .env
 .venv
 tmp
-requirements.txt
