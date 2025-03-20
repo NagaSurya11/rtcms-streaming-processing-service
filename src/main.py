@@ -1,5 +1,8 @@
+from fastapi import FastAPI
 from pyspark.sql import SparkSession
 from services.ticker_data_streaming_service import startStreaming
+import uvicorn
+from services.health_service import router
 
 if __name__ == '__main__':
     spark = SparkSession.builder \
@@ -12,3 +15,7 @@ if __name__ == '__main__':
         .config('spark.hadoop.fs.s3a.path.style.access', True) \
         .getOrCreate()
     startStreaming(spark)
+
+    app = FastAPI(title='rtcms-streaming-processing-service')
+    app.include_router(router)
+    uvicorn.run(app, port=1000)
