@@ -1,0 +1,7 @@
+.git
+__pycache__/
+Dockerfile
+.env
+.venv
+tmp
+requirements.txt
